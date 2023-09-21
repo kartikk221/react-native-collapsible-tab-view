@@ -27,7 +27,6 @@ import Animated, {
   useDerivedValue,
   useEvent,
   useHandler,
-  useFrameCallback
 } from 'react-native-reanimated';
 import { useDeepCompareMemo } from 'use-deep-compare';
 
@@ -310,11 +309,6 @@ export const useScrollHandlerY = (name: TabName) => {
       const tabIndex = tabNames.value.indexOf(name);
       return contentHeights.value[tabIndex] || Number.MAX_VALUE;
   }, []);
-
-  // OPTIMIZATION
-  useFrameCallback(() => {
-      /* This is an optimization to prevent FPS drops and locks refresh rate maximum for smooth experience */
-  });
 
   const scrollHandler = useAnimatedScrollHandler(
       {
